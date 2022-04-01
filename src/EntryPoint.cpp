@@ -1,4 +1,5 @@
 #include "insrc/app_window.h"
+#include <stdio.h>
 
 int main(int, char**)
 {
@@ -7,7 +8,6 @@ int main(int, char**)
         return 1;
 
     App_Window* main = new App_Window("main", 500, 500);
-
     App_Window::wins32.push_back(main);
     glfwSwapInterval(1);
 

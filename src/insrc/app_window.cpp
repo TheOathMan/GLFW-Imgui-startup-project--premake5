@@ -1,6 +1,5 @@
 #include "app_window.h"
-#include <assert.h>
-
+#include <stdio.h>
 
 std::vector<App_Window*> App_Window::wins32;
 
@@ -12,12 +11,16 @@ App_Window::App_Window(const char* window_name, int width, int height, GLFWwindo
    // glfwSetErrorCallback(glfw_error_callback);
     window = glfwCreateWindow(width, height, windowName, NULL, srd_window);
 
-    if (window == NULL)
-        assert("There is no window or your GPU isn't working properly", true);
+    if (!window) {
+		glfwTerminate();
+        perror ("Window failed at initialization");
+		exit(EXIT_FAILURE);
+	}
 
     glfwMakeContextCurrent(window);
     const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
     screenSize.width = mode->width, screenSize.hight = mode->height;
+    SetBackgroundColor(0.7f,0.7f,0.7f);
 }
 
 App_Window:: ~App_Window() 
@@ -27,14 +30,7 @@ App_Window:: ~App_Window()
 
 void App_Window::OnWindowAwake()
 {
-    // Window Icon
-    //Image GetIcon((pixel_uc*)_icon_data,icon_size,4);
-    //GetIcon.overrideColors(COLOR_WHITE,COLOR_RED);
-    //GLFWimage icons[1];
-    //icons[0].pixels = GetIcon.Get_Data();
-    //icons[0].width  = GetIcon.Get_Width();
-    //icons[0].height = GetIcon.Get_Height();
-    //glfwSetWindowIcon(window, 1, icons);
+
 }
 
 
@@ -43,7 +39,6 @@ void App_Window::OnUpdate()
     glfwMakeContextCurrent(window);
     glClear(GL_COLOR_BUFFER_BIT);
     glClearColor(background_col[0],background_col[1],background_col[2], 1.0f);
-    //RawQuadTexture();
 }
 
 void App_Window::OnInput()
