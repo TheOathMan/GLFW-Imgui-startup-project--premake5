@@ -46,7 +46,7 @@ workspace "GP"
    filename "GLFW Startup" 
    location (BuidName)
 
-project "Glyph_Printer"
+project "GLFW-IMGUI"
    kind "ConsoleApp"
    language "C++"
    cppdialect "C++11"
