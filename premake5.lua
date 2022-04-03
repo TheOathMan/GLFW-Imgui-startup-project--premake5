@@ -39,7 +39,7 @@ CopyFolder("src",BuidName)
 
 --if string.find("gmake gmake2",_ACTION) ~= nil then os.copyfile("compile_and_run.bat", BuidName .. "/compile_and_run.bat") end
 
-workspace "GP"
+workspace "GLFW-IMGUI"
    configurations {"Debug","Release"}
    architecture "x64"
    system("windows")
